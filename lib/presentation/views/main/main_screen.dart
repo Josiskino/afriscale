@@ -6,7 +6,6 @@ import '../../widgets/custom_bottom_nav_bar/custom_bottom_nav_bar_item.dart';
 import '../../widgets/custom_bottom_nav_bar/custum_bottom_nav_bar.dart';
 import '../home/home_screen.dart';
 
-
 class MainPage extends StatefulWidget {
   const MainPage({super.key});
 
@@ -14,35 +13,20 @@ class MainPage extends StatefulWidget {
   State<MainPage> createState() => _MainPageState();
 }
 
-
-
 class _MainPageState extends State<MainPage> {
   int currentTab = 0;
 
-  // Ajoutons un index spécial pour le bouton central
-  static const int centerButtonIndex = 2; 
-
   final List<Widget> screens = [
     const HomeScreen(),
-    //const OtpVerificationScreen(phoneNumber: '+22898177115',),
-    //const FavouriteScreen(),
-   
+    const Scaffold(body: Center(child: Text('Favorites'))), // Placeholder
+    const Scaffold(body: Center(child: Text('Address Book'))), // Placeholder
+    const Scaffold(body: Center(child: Text('Settings'))), // Placeholder
+    const Scaffold(body: Center(child: Text('Settings'))), // Placeholder
   ];
 
   void onTabSelected(int index) {
     setState(() {
-      // Ajuster l'index en fonction du bouton central
-      if (index >= centerButtonIndex) {
-        currentTab = index + 1; // Skip the center button index
-      } else {
-        currentTab = index;
-      }
-    });
-  }
-
-  void onCenterButtonTap() {
-    setState(() {
-      currentTab = centerButtonIndex; // Utiliser l'index du bouton central
+      currentTab = index;
     });
   }
 
@@ -57,21 +41,23 @@ class _MainPageState extends State<MainPage> {
             : AppColors.subTextColorLight,
         selectedColor: Theme.of(context).colorScheme.primary,
         onTap: onTabSelected,
-        selectedTab: currentTab == centerButtonIndex ? -1 : currentTab > centerButtonIndex ? currentTab - 1 : currentTab,
-        onCenterButtonTap: onCenterButtonTap,
-         isSelected: currentTab == centerButtonIndex,
+        selectedTab: currentTab,
         children: const [
           CustomBottomAppBarItem(
             icon: Iconsax.home,
             text: "Home",
           ),
           CustomBottomAppBarItem(
-            icon: Icons.favorite_outline,
-            text: "Favourites",
+            icon: Icons.shopping_bag_outlined,
+            text: "Orders",
           ),
           CustomBottomAppBarItem(
-            icon: Icons.assignment_outlined,
-            text: "Address Book",
+            icon: Iconsax.chart_2,
+            text: "Chart",
+          ),
+          CustomBottomAppBarItem(
+            icon: Icons.groups_outlined,
+            text: "Clients",
           ),
           CustomBottomAppBarItem(
             icon: Iconsax.setting,

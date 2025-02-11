@@ -6,7 +6,6 @@ import 'core/constants/app_text_strings.dart';
 import 'presentation/routes/app_router.dart';
 
 void main() {
-  // Envelopper toute l'application avec ProviderScope
   runApp(const ProviderScope(child: MyApp()));
 }
 
